@@ -1,0 +1,132 @@
+filter:
+	timestep: daily
+	output:
+		format: csv
+		path: "../out/bigcreek"
+		filename: "spatial_data_point_patchvar"
+	patch:
+		ids: 1
+		variables: snowpack = snowpack.water_equivalent_depth,
+		           stratum.cs.leafc,
+		           stratum.cs.live_stemc,
+		           stratum.cs.dead_stemc,
+		           burn
+		           
+filter:
+	timestep: daily
+	output:
+		format: csv
+		path: "../out/bigcreek"
+		filename: "cube_agg_p"
+	basin:
+		ids: 1
+		variables: 
+		patch.litter_cs.totalc, 
+		patch.burn,
+		patch.soil_cs.totalc, 
+		patch.sat_deficit_z, 
+		patch.snowpack.water_equivalent_depth, 
+		patch.evaporation_surf,
+		patch.exfiltration_unsat_zone,
+		patch.exfiltration_sat_zone, 
+		patch.evaporation,
+		patch.family_pct_cover, 
+		patch.streamflow,
+		patch.rz_storage,
+		zone.snow,
+		zone.rain,
+		stratum.transpiration_sat_zone,
+		stratum.transpiration_unsat_zone,
+        stratum.cs.net_psn,
+		stratum.epv.height,
+		stratum.cs.leafc,
+		stratum.cs.leafc_store,
+		stratum.cs.live_stemc,
+		stratum.cs.dead_stemc,
+	    stratum.cs.frootc,
+	    stratum.cs.live_crootc,
+	    stratum.cs.dead_crootc,
+		stratum.fe.canopy_target_prop_c_consumed,
+		stratum.fe.canopy_target_prop_c_remain_adjusted,
+		stratum.fe.canopy_target_prop_c_remain_adjusted_leafc,
+		stratum.rootzone.depth
+		
+				
+filter:
+	timestep: daily
+	output:
+		format: csv
+		path: "../out/bigcreek"
+		filename: "cube_data_point_c_over"
+	stratum:
+		ids: 1:210:162724:162724:1627241,
+		1:190:75516:75516:755161,
+		1:172:82782:82782:827821,
+		1:150:212962:212962:2129621,
+		1:196:139188:139188:1391881
+		variables: consumedCOver = fe.canopy_target_prop_c_consumed,
+				 mortCOver= fe.canopy_target_prop_mort,
+				 netpsnOver = cs.net_psn,
+				 heightOver = epv.height,
+				 transOver = transpiration_sat_zone+transpiration_unsat_zone,
+				 leafCOver = cs.leafc + cs.leafc_store,
+				 stemCOver = cs.live_stemc + cs.dead_stemc,
+				 rootCOver = cs.frootc + cs.live_crootc + cs.dead_crootc,
+				 rootdepthCOver = rootzone.depth
+				 
+				 
+filter:
+	timestep: daily
+	output:
+		format: csv
+		path: "../out/bigcreek"
+		filename: "cube_data_point_c_under"
+	stratum:
+		ids: 1:210:162724:162724:1627242,
+		1:190:75516:75516:755162,
+		1:172:82782:82782:827822,
+		1:150:212962:212962:2129622,
+		1:196:139188:139188:1391882
+		variables:  consumedCUnder = fe.canopy_subtarget_prop_c_consumed, 
+				mortCUnder = fe.canopy_subtarget_prop_mort,
+				transUnder = transpiration_sat_zone+transpiration_unsat_zone,
+				 netpsnUnder = cs.net_psn,
+				 heightUnder = epv.height
+				 leafCUnder = cs.leafc + cs.leafc_store,
+				 stemCUnder = cs.live_stemc + cs.dead_stemc,
+				 rootCUnder = cs.frootc + cs.live_crootc + cs.dead_crootc,
+				 rootdepthUnder = rootzone.depth
+				
+filter:
+	timestep: daily
+	output:
+		format: csv
+		path: "../out/bigcreek"
+		filename: "cube_data_point_p"
+	patch:
+		ids: 1:210:162724:162724,
+		1:190:75516:75516,
+		1:172:82782:82782,
+		1:150:212962:212962,
+		1:196:139188:139188
+		variables: coverfract = family_pct_cover,
+		    litterc = litter_cs.totalc, 
+		    burn, 
+		    soilc=soil_cs.totalc, 
+		    depthToGW = sat_deficit_z, 
+		    snowpack = snowpack.water_equivalent_depth,
+		    canopyevap = evaporation,
+		    coverfract = family_pct_cover,
+		    streamflow,
+		    rootdepth = rootzone.depth,
+		    groundevap = evaporation_surf+exfiltration_unsat_zone+exfiltration_sat_zone, 
+		    vegAccessWater = rz_storage,
+		    Qin, 
+		    Qout,
+		    zone.rain,
+		    zone.snow
+
+
+
+
+
